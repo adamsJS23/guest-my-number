@@ -13,6 +13,7 @@ let secretNumber = Math.trunc(Math.random() * 20 + 1);
 let score = 20;
 let lastScore = 0;
 let highScore = 0;
+let lowScore = 20;
 let isGameStarted = false;
 let isGamerWinsOnce = false;
 console.log('The number to guess', secretNumber);
@@ -24,7 +25,16 @@ document.querySelector('.check').addEventListener('click', function (evt) {
     if (score > lastScore) {
       lastScore = score;
       document.querySelector('.highscore').textContent = score;
+      
+    } 
+
+    if (score <= lowScore) {
+
+      lowScore = score;
+      console.log('lowscore', lastScore);
+      document.querySelector('.lowscore').textContent = lowScore;
     }
+    
     document.querySelector('.number').textContent = secretNumber;
     document.querySelector('.message').textContent =
       'Correct Number, You win !!!!';
@@ -49,7 +59,8 @@ document.querySelector('.check').addEventListener('click', function (evt) {
     }
   }
   document.querySelector('.score').textContent = score;
-  isGameStarted = true;
+  console.log('score', score);
+
 });
 
 document.querySelector('.again').addEventListener('click', () => {
